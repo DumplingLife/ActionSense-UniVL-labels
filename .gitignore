@@ -1,4 +1,5 @@
-data
+/data/**/*.hdf5
+/data/**/*.avi
 data_processed
 training_networks
 model.png
