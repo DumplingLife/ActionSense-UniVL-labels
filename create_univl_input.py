@@ -1,6 +1,7 @@
 import h5py
 import numpy as np
 import os
+import pickle
 
 def find_nearest(array, value):
     """Find the index of the nearest value in array."""
@@ -65,3 +66,6 @@ for dirpath, dirnames, filenames in os.walk("data/experiments"):
             output_dict[key] = process_hdf5_file(os.path.join(dirpath, filename))
 
 print(output_dict)
+
+with open('data.pickle', 'wb') as handle:
+    pickle.dump(output_dict, handle, protocol=pickle.HIGHEST_PROTOCOL)
