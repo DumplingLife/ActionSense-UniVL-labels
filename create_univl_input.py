@@ -16,7 +16,7 @@ def process_hdf5_file(filepath):
     activities_time = hdf_file["experiment-activities"]["activities"]["time_s"][:]
     frame_timestamps = hdf_file["eye-tracking-video-worldGaze"]["frame_timestamp"]["time_s"][:]
 
-    print(len(frame_timestamps), "frames")
+    print(filepath, len(frame_timestamps), "frames", len(frame_timestamps)/(16/10 * 29.54), "features")
 
     captions = [item[0].decode('utf-8') for item in activities_data]
     action = [item[1].decode('utf-8') for item in activities_data]
