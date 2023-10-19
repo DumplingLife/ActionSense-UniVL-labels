@@ -41,7 +41,11 @@ def process_hdf5_file(filepath):
     transcripts = []
     for item in result:
         caption, start_frame, stop_frame = item
-        frames_per_feature = 16/10 * 29.54 # remember that raw video fps is not 10, so take that into account as well
+
+        # remember that raw video fps is not 10, so take that into account as well
+        # frames_per_feature = 16/10 * 29.54
+        frames_per_feature = 10/10 * 29.54 # somehow its 10 frames per feature, not 16, weird
+
         start_features.append(round(start_frame/frames_per_feature))
         end_features.append(round(stop_frame/frames_per_feature))
         texts.append(caption)
