@@ -74,4 +74,4 @@ for dirpath, dirnames, filenames in os.walk("data/experiments"):
 print(output_dict)
 
 with open('data.pickle', 'wb') as handle:
-    pickle.dump(output_dict, handle, protocol=pickle.HIGHEST_PROTOCOL)
+    pickle.dump(output_dict, handle)
