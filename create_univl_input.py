@@ -68,7 +68,7 @@ for dirpath, dirnames, filenames in os.walk("data/experiments"):
             timestamp, tail = filename.split("_streamLog_actionNet-wearables_")
             subject = tail.split('.')[0]  # Extract the subject part, e.g., S00, from the remaining portion of the filename
 
-            key = f"{timestamp}_{subject}_eye-tracking-video-worldGaze_frame.avi"
+            key = f"{timestamp}_{subject}_eye-tracking-video-worldGaze_frame"
             output_dict[key] = process_hdf5_file(os.path.join(dirpath, filename))
 
 print(output_dict)
