@@ -15,8 +15,12 @@ def process_hdf5_file(filepath):
     activities_data = hdf_file["experiment-activities"]["activities"]["data"][:]
     activities_time = hdf_file["experiment-activities"]["activities"]["time_s"][:]
     frame_timestamps = hdf_file["eye-tracking-video-worldGaze"]["frame_timestamp"]["time_s"][:]
+    
+    # remember that raw video fps is not 10, so take that into account as well
+    # frames_per_feature = 16/10 * 29.54
+    frames_per_feature = 10/10 * 29.54 # somehow its 10 frames per feature, not 16, weird
 
-    print(filepath, len(frame_timestamps), "frames", len(frame_timestamps)/(16/10 * 29.54), "features")
+    print(filepath, len(frame_timestamps), "frames", len(frame_timestamps)/frames_per_feature, "features")
 
     captions = [item[0].decode('utf-8') for item in activities_data]
     action = [item[1].decode('utf-8') for item in activities_data]
@@ -41,10 +45,6 @@ def process_hdf5_file(filepath):
     transcripts = []
     for item in result:
         caption, start_frame, stop_frame = item
-
-        # remember that raw video fps is not 10, so take that into account as well
-        # frames_per_feature = 16/10 * 29.54
-        frames_per_feature = 10/10 * 29.54 # somehow its 10 frames per feature, not 16, weird
 
         start_features.append(round(start_frame/frames_per_feature))
         end_features.append(round(stop_frame/frames_per_feature))
