@@ -14,7 +14,8 @@ with h5py.File(hdf5_path, "r") as f:
     # Load video frame timestamps
     frame_time = f["eye-tracking-video-worldGaze/frame_timestamp/time_s"][:]
 
-    chunk_times = 16.66667
+    # chunk_times = 16.66667
+    chunk_times = 15
     
     # Initialize variables
     start_time = frame_time[0]
